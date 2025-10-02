@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Winrate Upgrade - Modern</title>
+<style>
+:root{
+  --bg: #0a0f1c;
+  --panel: rgba(255,255,255,0.05);
+  --accent1: #7f5cff; 
+  --accent2: #00d4ff;
+  --text: #f9f9fb;
+  --muted: #9aa0b8;
+  --highlight: #ffd859;
+  --glass: rgba(255,255,255,0.08);
+}
+
+body{
+  margin:0;
+  font-family:"Poppins",system-ui,Roboto,sans-serif;
+  background: url('auto.jpg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--text);
+}
+
+.card{
+  width:min(520px,90vw);
+  padding:28px;
+  border-radius:20px;
+  background:var(--panel);
+  backdrop-filter: blur(16px);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 30px rgba(0,212,255,0.15), 0 0 50px rgba(127,92,255,0.1);
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+
+/* === TITLE DENGAN EFFECT GRADIENT & GLOW === */
+.title{
+  font-size:28px;
+  font-weight:900;
+  text-transform:uppercase;
+  background: linear-gradient(90deg,var(--accent2),var(--highlight));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: glow 2s infinite alternate;
+  margin-bottom:12px;
+}
+
+.subtitle{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+.center-area{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+.percent-wrap{
+  width:100%;
+  max-width:320px;
+  background:var(--glass);
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+  box-shadow: inset 0 0 12px rgba(127,92,255,0.2);
+}
+
+.big-percent{
+  font-size:48px;
+  font-weight:900;
+  background: linear-gradient(90deg,var(--accent2),var(--highlight));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: glow 2s infinite alternate;
+}
+
+.percent-label{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 6px rgba(0,212,255,0.5);}
+  to{text-shadow:0 0 18px rgba(255,216,89,0.9);}
+}
+
+/* === GRAFIK BAR NAIK-TURUN === */
+.visual{
+  width:100%;
+  max-width:320px;
+  height:180px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-around;
+  background:var(--glass);
+  border-radius:16px;
+  padding:15px;
+}
+
+.bar{
+  width:30px;
+  background:linear-gradient(180deg,var(--highlight),orange);
+  border-radius:8px;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.bar:nth-child(1){animation-delay:0s;}
+.bar:nth-child(2){animation-delay:0.2s;}
+.bar:nth-child(3){animation-delay:0.4s;}
+.bar:nth-child(4){animation-delay:0.6s;}
+.bar:nth-child(5){animation-delay:0.8s;}
+
+@keyframes bounce{
+  0%,100%{height:20%;}
+  50%{height:95%;}
+}
+
+.cta{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  max-width:220px;
+}
+
+.btn{
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  border:none;
+  padding:14px 22px;
+  border-radius:12px;
+  color:white;
+  font-weight:700;
+  font-size:14px;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,212,255,0.25);
+  transition: all .2s ease;
+}
+.btn:hover{
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 10px 28px rgba(127,92,255,0.35);
+}
+
+.note{
+  margin-top:20px;
+  font-size:12px;
+  color:var(--muted);
+  padding:10px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.04);
+  text-align:center;
+}
+
+.footer{
+  margin-top:14px;
+  font-size:12px;
+  color:var(--muted);
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+.small-action{text-decoration:underline;cursor:pointer;}
+
+/* === RESPONSIVE MOBILE === */
+@media (max-width:480px){
+  .percent-wrap, .visual, .cta{
+    width:90%;  
+    max-width:none;
+  }
+  .bar{
+    width:32px;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="title">SERVER KASINOJP AUTO WIN</div>
+    <div class="subtitle">Selamat, karena sistem telah meningkatkan <b>winrate</b> kamu...</div>
+
+    <div class="center-area">
+      <div class="percent-wrap">
+        <input type="text" id="userIdInput" placeholder="Masukkan User ID" 
+               style="width:90%;padding:6px 10px;border-radius:8px;border:none;margin-bottom:10px;text-align:center;font-size:14px;">
+        <div class="big-percent" id="percent">0%</div>
+        <div class="percent-label">Persentase peningkatan</div>
+      </div>
+
+      <div class="visual">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+
+      <div class="cta">
+        <button id="activateBtn" class="btn">CEK WINRATE BY IP</button>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>Catatan:</b> KETIKA WINRATE NAIK DILARANG MERISET KARNA MEMBUAT WINRATE TURUN KEMBALI.<br>
+      <i>SISTEM TERVERIFIKASI VALID.</i>
+    </div>
+
+    <div class="footer">
+      <span>Status: <span id="statusText">Non aktif</span></span>
+      <span class="small-action" id="resetBtn">Reset</span>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const percentEl = document.getElementById("percent");
+  const activateBtn = document.getElementById("activateBtn");
+  const statusText = document.getElementById("statusText");
+  const resetBtn = document.getElementById("resetBtn");
+  const userIdInput = document.getElementById("userIdInput");
+
+  const minTarget=92, maxTarget=98, duration=2000;
+  let active=false, timer=null, current=0;
+  let currentUserId = "";
+
+  function animateTo(target){
+    if(timer) clearInterval(timer);
+    const start=current, diff=target-start;
+    const startTime=Date.now();
+    timer=setInterval(()=>{
+      const t=Math.min(1,(Date.now()-startTime)/duration);
+      const eased=1-Math.pow(1-t,3);
+      const val=Math.round(start+diff*eased);
+      percentEl.textContent=val+"% ("+currentUserId+")";
+      current=val;
+      if(t>=1){clearInterval(timer); timer=null;}
+    },16);
+  }
+
+  function getRandomTarget(){
+    return Math.floor(Math.random()*(maxTarget-minTarget+1))+minTarget;
+  }
+
+  activateBtn.onclick=()=>{
+    const userId = userIdInput.value.trim();
+    if(!userId){
+      alert("Silakan masukkan User ID terlebih dahulu!");
+      return;
+    }
+
+    currentUserId = userId;
+
+    if(active) {
+      window.location.href = "https://heylink.me/kasinojp-ku/"; 
+      return;
+    }
+    activateBtn.textContent="Mengaktifkan...";
+    activateBtn.disabled=true;
+    setTimeout(()=>{
+      const target=getRandomTarget();
+      animateTo(target);
+      active=true;
+      statusText.textContent="Aktif ("+target+"%)";
+      activateBtn.textContent="WINRATE AKTIF DAN LOGIN SEKARANG";
+      activateBtn.disabled=false;
+    },700);
+  }
+
+  resetBtn.onclick=()=>{
+    if(timer) clearInterval(timer);
+    current=0;
+    percentEl.textContent="0%";
+    active=false;
+    statusText.textContent="Non aktif";
+    activateBtn.textContent="CEK WINRATE BY IP";
+    userIdInput.value="";
+    currentUserId="";
+  }
+})();
+</script>
+</body>
+</html>
